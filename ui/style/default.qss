@@ -1,0 +1,102 @@
+#central_frame {
+    font: 12pt bold "Raleway, sans-serif"; 
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+#superior_bar, #buttons_bar {
+    background-color: #363E54;
+}
+
+QMenuBar {
+    margin: 5px;
+    background-color: #363E54;
+    color: white; 
+    font-size: 12pt;
+}
+
+QMenuBar::item {
+    spacing: 3px;
+    margin: 3px 0;
+    padding: 2px 10px;
+    border-radius: 5px;
+}
+
+QMenuBar::item:selected, QMenu::item:selected {
+    background-color: #BE603A;
+}
+
+QMenu, QAction {
+    background-color: #363E54;
+    color: white; 
+    font-size: 10pt;
+}
+
+QFrame#SongLineWidget {
+    background-color: #363E54; 
+    border-radius: 10px;
+}
+
+QLabel {
+    color: white; 
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+QLineEdit:focus {
+    border: 2px solid #BE603A;
+}
+
+QPushButton {
+    background-color: #BE603A; 
+    color: white; 
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+QScrollArea {
+    background-color: #031224;
+    border: none;
+}
+
+QScrollBar:vertical {
+    border: none;
+    background-color: #031224;
+    width: 12px;
+    margin: 12px 0 12px 0;
+    border-radius: 0;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #363E54;
+    border-radius: 6px;
+}
+
+QScrollBar::sub-line:vertical {
+    border: none;
+    border-radius: 6px;
+    background-color: #363E54;
+    height: 12px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::add-line:vertical {
+    border: none;
+    border-radius: 6px;
+    background-color: #363E54;
+    height: 12px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+
+#content_frame {
+    background-color: #031224;
+}
+
+QMessageBox > QLabel {
+    font-weight: normal;
+    color: black;
+}

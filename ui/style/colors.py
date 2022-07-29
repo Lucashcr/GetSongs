@@ -1,0 +1,4 @@
+ORANGE   = '#A34A27'
+PURPLE   = '#363E54'
+DARKBLUE = '#031224'
+GREY     = '#909090'
