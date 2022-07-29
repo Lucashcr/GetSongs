@@ -130,4 +130,6 @@ dmypy.json
 
 # Internal files
 runner
+runner.exe
 teste.docx
+.vscode/

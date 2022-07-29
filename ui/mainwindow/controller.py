@@ -1,5 +1,3 @@
-from PySide6.QtWidgets import QMainWindow
-
 from ui.mainwindow.songlinewidget import SongLineWidget
 from ..qt import *
 import sys
@@ -58,7 +56,10 @@ class MainWindow(QMainWindow):
     def open_file(self):
         self.verify_changes()
         self.opened_file = QFileDialog.getOpenFileUrl(self, 'Escolha um arquivo para abrir...', filter='*.hin')[0].path()
-            
+        
+        if sys.platform == 'win32':
+            self.opened_file = self.opened_file[1:]
+        
         if self.opened_file:
             self.clear_layout(self.view.content_frame_layout)
             self.read_file()
@@ -83,6 +84,9 @@ class MainWindow(QMainWindow):
                 
     def save_file(self):
         if self.opened_file:
+            if sys.platform == 'win32':
+                self.opened_file = self.opened_file[1:]
+            
             with open(self.opened_file, 'w') as file:
                 for widget in filter(lambda item: isinstance(item, SongLineWidget), self.view.content_frame.children()):
                     file.write('|'.join(widget.get_content()) + '\n')
@@ -91,7 +95,7 @@ class MainWindow(QMainWindow):
     
         
     def saveas_file(self):
-        self.opened_file = QFileDialog.getSaveFileUrl(self, 'Escolha um arquivo para abrir...', filter='*.hin')[0].path()
+        self.opened_file = QFileDialog.getSaveFileUrl(self, 'Escolha um arquivo para abrir...', filter='*.hin')[0].path()        
         if not self.opened_file.endswith('.hin'):
             self.opened_file += '.hin'
         
