@@ -11,9 +11,11 @@ class UI_MainWindow(object):
         with open('./ui/style/default.qss', 'r') as file:
             style = file.read()
             
+        parent.setWindowTitle("GetSongs")
         parent.resize(1280, 720)
         parent.setMinimumSize(800, 600)
         parent.setStyleSheet(style)
+        parent.showMaximized()
                         
         self.central_frame = QFrame(parent)
         self.central_frame.setObjectName('central_frame')
