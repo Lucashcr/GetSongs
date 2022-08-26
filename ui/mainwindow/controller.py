@@ -173,7 +173,7 @@ class MainWindow(QMainWindow):
                 songline.input_url.setEnabled(opt)
 
 
-    def closeEvent(self, event) -> None:
+    def closeEvent(self, _) -> None:
         self.verify_changes()
             
             
