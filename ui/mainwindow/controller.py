@@ -45,7 +45,6 @@ class MainWindow(QMainWindow):
         
     def new_file(self):
         self.verify_changes()
-        self.opened_file = ''
         self.clear_layout(self.view.content_frame_layout)
         for i in range(5):
             self.view.content_frame_layout.addWidget(
@@ -183,9 +182,12 @@ class MainWindow(QMainWindow):
             newfile = ''
             for songline in self.view.content_frame.children()[1:]:
                 newfile += '|'.join(songline.get_content()) + '\n' 
-            
-            with open(self.opened_file, 'r') as file:
-                previous = file.read()
+
+            if self.opened_file:
+                with open(self.opened_file, 'r') as file:
+                    previous = file.read()
+            else:
+                previous = ''
             
             if previous != newfile:
                 response = QMessageBox.warning(
