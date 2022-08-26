@@ -73,7 +73,7 @@ class MainWindow(QMainWindow):
                 self.view.content_frame_layout.addWidget(
                     SongLineWidget(i+1, title=title, name=name, artist=artist, url=url)
                 )
-        except Exception:
+        except:
             msgbox = QMessageBox(self)
             msgbox.setIcon(QMessageBox.Icon.Critical)
             msgbox.setWindowTitle('ERRO')
@@ -124,16 +124,13 @@ class MainWindow(QMainWindow):
         
     def search_links(self):
         self.setInputsEnabled(False)
-        
-        q = QMessageBox.information(self, "Aguarde", "Estamos coletando os links para você :)", QMessageBox.NoButton, QMessageBox.NoButton)
-        
+                
         with GetSongLinks() as browser:
             for song in self.view.content_frame.children()[1:]:
                 _, name, artist, _ = song.get_content()
                 link = browser.get_link(name, artist)
                 print(link)
                 song.input_url.setText(link)
-        
         
         self.setInputsEnabled(True)
                 

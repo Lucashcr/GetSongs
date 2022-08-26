@@ -23,16 +23,19 @@ class GetSongLinks:
 
 
     def get_link(self, song: str, artist: str):
-        input_search = self.driver.find_element(By.ID, 'main_suggest')
-        input_search.clear()
-        input_search.send_keys(f'{song} {artist}')
-        sleep(3)
-        input_search.send_keys(Keys.ENTER)
-        sleep(2)
-        links = self.driver.find_elements(By.TAG_NAME, 'a')
-        first_link = list(filter( lambda item: item.get_attribute('class') == 'gs-title' , links))[0]
+        try:
+            input_search = self.driver.find_element(By.ID, 'main_suggest')
+            input_search.clear()
+            input_search.send_keys(f'{song} {artist}')
+            sleep(3)
+            input_search.send_keys(Keys.ENTER)
+            sleep(2)
+            links = self.driver.find_elements(By.TAG_NAME, 'a')
+            first_link = list(filter( lambda item: item.get_attribute('class') == 'gs-title' , links))[0]
 
-        return first_link.get_attribute('href')
+            return first_link.get_attribute('href')
+        except:
+            self.get_link(self, song, artist)
     
     
 def get_lyrics(link):
