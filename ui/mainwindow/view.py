@@ -82,8 +82,15 @@ class UI_MainWindow(object):
         self.button_remove_song = QPushButton('Remover música', self.buttons_bar)
         self.buttons_bar_layout.addWidget(self.button_remove_song)
         
-        self.buttons_bar_layout.addSpacerItem(QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
+        # self.bottom_bar_spacer = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Minimum)
+        # self.buttons_bar_layout.addSpacerItem(self.bottom_bar_spacer)
         
+        self.progress_bar = QProgressBar(self.buttons_bar)
+        self.progress_bar.setMinimum(0)
+        self.progress_bar.setMaximum(100)
+        self.progress_bar.setEnabled(False)
+        self.buttons_bar_layout.addWidget(self.progress_bar)
+
         self.button_search_links = QPushButton('Buscar links', self.buttons_bar)
         self.buttons_bar_layout.addWidget(self.button_search_links)
         

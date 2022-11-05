@@ -126,15 +126,20 @@ class MainWindow(QMainWindow):
         
         
     def search_links(self):
+        self.view.progress_bar.setEnabled(True)
         self.setInputsEnabled(False)
-                
+
         with GetSongLinks() as browser:
-            for song in self.view.content_frame.children()[1:]:
+            count = len(self.view.content_frame.children()[1:])
+            for i, song in enumerate(self.view.content_frame.children()[1:]):
                 _, name, artist, _ = song.get_content()
                 link = browser.get_link(name, artist)
                 print(link)
                 song.input_url.setText(link)
+                self.view.progress_bar.setValue((i+1) * 100 // count)
         
+        self.view.progress_bar.setValue(0)
+        self.view.progress_bar.setEnabled(False)
         self.setInputsEnabled(True)
                 
                 
@@ -163,7 +168,6 @@ class MainWindow(QMainWindow):
         
         self.setInputsEnabled(True)
 
-
     def setInputsEnabled(self, opt: bool):
         for songline in self.view.content_frame.children():
             if isinstance(songline, SongLineWidget):
@@ -175,8 +179,7 @@ class MainWindow(QMainWindow):
 
     def closeEvent(self, _) -> None:
         self.verify_changes()
-            
-            
+
     def verify_changes(self):
         if not len(self.view.content_frame.children()) == 1:
             newfile = ''

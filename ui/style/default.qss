@@ -128,6 +128,14 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
     background: none;
 } */
 
+QProgressBar {
+    background-color: #031224;
+    color: white;
+}
+
+QProgressBar:disabled {
+    background-color: #363E54;
+}
 
 #content_frame {
     background-color: #031224;
